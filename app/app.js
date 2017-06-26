@@ -5,6 +5,7 @@ const secrets = require('../secrets');
 
 // Express & Socket.io setup
 const express = require('express');
+const ejs = require('ejs');
 const app = express();
 const https = require('https');
 const http = require('http');
@@ -42,6 +43,17 @@ let url_of_image = '';
 io.on('connection', function (socket) {
     socket.emit('mountainChange', { result: current_result });
 });
+
+app.set('view engine', 'ejs');
+app.use(express.static('lib'));
+app.get('/!', (req, res) => {
+    let ua = req.headers['user-agent'];
+    console.log(ua);
+    if(/curl|powershell/i.test(ua))
+        res.send((current_result ? mountain : no));
+    else
+        res.render('downmtn');
+})
 
 // For the ASCII Art
 app.get('/', (req, res) => {
@@ -147,12 +159,17 @@ pre {
     margin-top: 200px;
     border: white solid 1px;
 }
+a {
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
+<a href="/!">
 <pre>
 ${result}
 </pre>
+</a>
 </body>
 </html>
 `
