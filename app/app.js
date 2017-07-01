@@ -122,7 +122,7 @@ function containsMountain(url) {
 
                 if (current_result != found) {
                     let obj = {
-                        result: current_result,
+                        result: found,
                         image: url_of_image
                     };
                     webHooks.trigger('mountainChange', obj);
