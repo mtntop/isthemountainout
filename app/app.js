@@ -41,7 +41,7 @@ let current_result = false;
 let url_of_image = '';
 
 io.on('connection', function (socket) {
-    socket.emit('mountainChange', { result: current_result });
+    socket.emit('mountainChange', { result: current_result, image: url_of_image });
 });
 
 app.set('view engine', 'ejs');
@@ -163,6 +163,7 @@ a {
     text-decoration: none;
 }
 </style>
+<script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
 <a href="/!">
@@ -170,6 +171,17 @@ a {
 ${result}
 </pre>
 </a>
+<script>
+var current_result = ${current_result};
+
+var socket = io('http://themtn.top');
+socket.on('mountainChange', function (data) {
+    console.log(data);
+    if(current_result != data.result) {
+        location.reload();
+    }
+});
+</script>
 </body>
 </html>
 `
