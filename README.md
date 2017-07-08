@@ -49,4 +49,5 @@ There's an even simpler version of the API at `/api/simple` that return status c
 Here are a list of projects that currently use this API:
 
 * [Mt. Rainier Alexa Skill](https://www.amazon.com/Tyler-Leonhardt-Mt-Rainier/dp/B072KGC5B1/ref=sr_1_1?s=digital-skills&ie=UTF8&qid=1497914199&sr=1-1&keywords=Mt+Rainier)
-* [Bync cube effects](https://github.com/tylerl0706/isthemountainout-blync)
+* [Bync cube effects](https://github.com/mtntop/isthemountainout-blync)
+* [Mt. Rainier Bot Framework Bot](https://github.com/mtntop/mtnbot)
